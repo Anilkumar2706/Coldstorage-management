@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Account</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4 url('contactus.jpeg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4CAF50;
+            text-align: center;
+        }
+        
+        .field {
+            margin-bottom: 15px;
+        }
+        
+        .field label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .field p {
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s, opacity 0.3s;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .button.primary {
+            background: #4CAF50;
+        }
+        
+        .button.primary:hover {
+            background: #45a049;
+        }
+        
+        .button.secondary {
+            background: #f44336;
+        }
+        
+        .button.secondary:hover {
+            background: #e53935;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>My Account</h2>
+        <div class="field">
+            <label for="name">Name:</label>
+            <p>
+                <?php echo htmlspecialchars($user['name']); ?>
+            </p>
+        </div>
+        <div class="field">
+            <label for="email">Email:</label>
+            <p>
+                <?php echo htmlspecialchars($user['email']); ?>
+            </p>
+        </div>
+        <div class="field">
+            <label for="phone">Phone Number:</label>
+            <p>
+                <?php echo htmlspecialchars($user['phone']); ?>
+            </p>
+        </div>
+        <a href="edit_account.php"><button>Edit Account</button></a>
+
+        <!-- Display Bookings -->
+        <h2>My Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($bookings): ?>
+                <?php foreach ($bookings as $booking): ?>
+                <tr>
+                    <td>
+                        <?php echo htmlspecialchars($booking['booking_id']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($booking['booking_date']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($booking['status']); ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <tr>
+                    <td colspan="3">No bookings found.</td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+
+        <!-- Display Payments -->
+        <h2>My Payments</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Payment Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($payments): ?>
+                <?php foreach ($payments as $payment): ?>
+                <tr>
+                    <td>
+                        <?php echo htmlspecialchars($payment['booking_id']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($payment['payment_date']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($payment['amount']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($payment['status']); ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <tr>
+                    <td colspan="4">No payments found.</td>
+                </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+
+        <a href="home.php"><button class="back-button">Go Back</button></a>
+    </div>
+</body>
+
+</html>

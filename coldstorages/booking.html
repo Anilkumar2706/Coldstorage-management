@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url(csd.jpeg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+        }
+        
+        .form-container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #4A148C;
+            margin-bottom: 20px;
+        }
+        
+        .field {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .field label {
+            margin-bottom: 5px;
+            color: #555;
+            display: block;
+        }
+        
+        .field input[type="text"],
+        .field input[type="email"],
+        .field select,
+        .field input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #9C27B0;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+            font-size: 16px;
+        }
+        
+        .field input:focus,
+        .field select:focus,
+        .field input[type="date"]:focus {
+            border-color: #6A1B9A;
+            outline: none;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        button {
+            width: 48%;
+            padding: 12px;
+            background-color: #E91E63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #D81B60;
+        }
+        
+        .go-back-button {
+            background-color: #FF5722;
+        }
+        
+        .go-back-button:hover {
+            background-color: #E64A19;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .checkbox-label input {
+            margin-right: 10px;
+        }
+        
+        .field-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .field-group .field {
+            width: 48%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Booking Form</h2>
+        <form id="bookingForm" action="save_booking.php" method="post" onsubmit="return handleFormSubmission(event)">
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" name="first_name" placeholder="Your name" required>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Your email" required>
+            </div>
+            <div class="field">
+                <label>Select Storage type</label>
+                <select name="storage_type" required>
+                    <option value="">Select storage unit</option>
+                    <option value="800">Storage Unit1 (Rs.800/- for 2 days)</option>
+                    <option value="1000">Storage Unit2 (Rs.1000/- for 2 days)</option>
+                    <option value="1200">Storage Unit3 (Rs.1200/- for 2 days)</option>
+                    <option value="1500">Storage Unit4 (Rs.1500/- for 2 days)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Select Crop Type</label>
+                <select name="crop_type" required>
+                    <option value="">Select a crop</option>
+                    <option value="Cotton">Cotton</option>
+                    <option value="Mirchi">Mirchi</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Fruits">Fruits</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <div class="field">
+                    <label>Starting Date</label>
+                    <input type="date" name="starting_date" required>
+                </div>
+                <div class="field">
+                    <label>Ending Date</label>
+                    <input type="date" name="ending_date" required>
+                </div>
+            </div>
+            <div class="checkbox-label">
+                <input type="checkbox" name="terms" required>
+                <label>I agree to the terms and conditions</label>
+            </div>
+            <div class="button-group">
+                <button type="submit"><strong>Book Now</strong></button>
+                <button type="button" class="go-back-button" onclick="window.history.back()"><strong>Go Back</strong></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function calculateDays(startDate, endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // including the starting day
+            return diffDays;
+        }
+
+        function handleFormSubmission(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('bookingForm');
+            const storageType = form.querySelector('select[name="storage_type"]').value;
+            const cropType = form.querySelector('select[name="crop_type"]').value;
+            const startingDate = form.querySelector('input[name="starting_date"]').value;
+            const endingDate = form.querySelector('input[name="ending_date"]').value;
+
+            if (!storageType || !cropType || !startingDate || !endingDate || !form.querySelector('input[name="terms"]').checked) {
+                alert("Please fill out all fields and agree to the terms.");
+                return false;
+            }
+
+            const numberOfDays = calculateDays(startingDate, endingDate);
+            const dailyRate = parseInt(storageType);
+            const totalCost = (dailyRate / 2) * numberOfDays;
+
+            // Store data in sessionStorage
+            sessionStorage.setItem('bookingData', JSON.stringify({
+                storageType,
+                cropType,
+                startingDate,
+                endingDate,
+                totalCost
+            }));
+
+            form.submit(); // Submit the form to save_booking.php
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

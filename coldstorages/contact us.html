@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Anil Cold Storage Services</title>
+    <style>
+        body {
+            background-image: url('contactus.jpeg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        
+        .header h1 {
+            margin: 0;
+        }
+        
+        .form {
+            margin-top: 20px;
+        }
+        
+        .form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form input,
+        .form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        
+        .form button[type="submit"] {
+            background-color: #f3dede;
+            color: #fff;
+        }
+        
+        .form button[type="submit"]:hover {
+            background-color: #444;
+        }
+        
+        .form button[type="button"] {
+            background-color: #007BFF;
+            color: white;
+        }
+        
+        .form button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .message {
+            display: none;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 16px;
+        }
+        
+        ul li {
+            margin-bottom: 10px;
+        }
+        
+        ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Contact Us - Anil Cold Storage Services</h1>
+        </div>
+        <div class="form">
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea><br><br>
+                <button type="submit">Send Message</button>
+                <button type="button" onclick="window.history.back()">Go Back</button>
+            </form>
+            <div id="messageContainer" class="message"></div>
+        </div>
+        <p>Alternatively, you can reach us at:</p>
+        <ul>
+            <li><a href="mailto:contact@anilkonakanchicoldstorages.com">contact@anilkonakanchicoldstorages.com</a></li>
+            <li><a href="tel:+1234567890">+91 7995982418</a></li>
+            <li>Address: Palnadu, Andhra Pradesh</li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'contact.php', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var response = JSON.parse(xhr.responseText);
+                    var messageContainer = document.getElementById('messageContainer');
+
+                    if (response.status === 'success') {
+                        messageContainer.className = 'message success';
+                        messageContainer.textContent = response.message;
+                    } else {
+                        messageContainer.className = 'message error';
+                        messageContainer.textContent = response.message;
+                    }
+                    messageContainer.style.display = 'block'; // Show the message
+                }
+            };
+            xhr.send(formData);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Anil Cold Storage Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url(photo.jpg.jpg);
+            background-position: center;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .form {
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            /* Adding a background to make text readable over the background image */
+            border-radius: 10px;
+        }
+        
+        .field {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 5px 0;
+        }
+        
+        .user img {
+            width: 300px;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        p {
+            text-align: center;
+        }
+        
+        .go-back-button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .go-back-button:hover {
+            background-color: #E64A19;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form">
+        <h1><strong>ABOUT US</strong></h1>
+        <p>Our cold storage was founded with the goal of reducing waste in the agricultural industry. The company has since expanded to serve multiple industries and offers a range of services. The name "anil" refers to a group involved in post-harvest activities
+            and also implies a commitment to meeting customer wishes. Harvish Cold Storage in Hyderabad is modern and fully automatic, with locations for storing a variety of products.</p>
+        <div class="user">
+            <img src="csd.jpeg" alt="Cold Storage Image">
+        </div>
+        <button class="go-back-button" onclick="window.history.back()">Go Back</button>
+    </div>
+</body>
+
+</html>

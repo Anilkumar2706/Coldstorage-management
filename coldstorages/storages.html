@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Anil Cold Storage Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .storage-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            margin: 20px;
+        }
+        
+        .storage-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            transition: transform 0.2s;
+        }
+        
+        .storage-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .storage-item img {
+            max-width: 150px;
+            margin-right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .storage-item h4 {
+            margin: 0;
+            color: #333;
+            flex-grow: 1;
+        }
+        
+        .storage-button,
+        .go-back-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .storage-button:hover,
+        .go-back-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        
+        .button-container {
+            text-align: center;
+            width: 68%;
+            color: #599;
+            padding: 15px;
+        }
+        
+        .go-back-button {
+            background-color: #f44336;
+            /* Red color */
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>List of Storages</h1>
+    <div class="storage-list">
+        <div class="storage-item">
+            <img src="storage1.jpg" alt="Storage Unit 1">
+            <h4>Storage Unit 1</h4>
+        </div>
+        <div class="storage-item">
+            <img src="storage2.jpg" alt="Storage Unit 2">
+            <h4>Storage Unit 2</h4>
+        </div>
+        <div class="storage-item">
+            <img src="storage 3.jpg" alt="Storage Unit 3">
+            <h4>Storage Unit 3</h4>
+        </div>
+        <div class="storage-item">
+            <img src="storage 4.jpg" alt="Storage Unit 4">
+            <h4>Storage Unit 4</h4>
+        </div>
+        <div class="button-container">
+            <button class="storage-button" onclick="location.href='booking.html'"><strong>Book Now</strong></button>
+            <button class="go-back-button" onclick="window.history.back()"><strong>Go Back</strong></button>
+        </div>
+    </div>
+</body>
+
+</html>

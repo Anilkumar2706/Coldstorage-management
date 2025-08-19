@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anil coldstorage services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            width: 100%;
+            background-image: url('photo.jpg.jpg');
+            background-position: center;
+            background-size: cover;
+            padding: 40px;
+            height: 110vh;
+            display: flex;
+            justify-content: start;
+            align-items: start;
+        }
+        
+        button {
+            border: none;
+            outline: none;
+            background-color: white;
+            width: 150px;
+            padding: 8px;
+            color: black;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        button:hover {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        function redirectToSignup() {
+            window.location.href = 'signup.html';
+        }
+
+        function redirectToLogin() {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <button class="custom-button" onclick="redirectToSignup()"><strong>Create Account</strong></button>
+        <button class="custom-button" onclick="redirectToLogin()"><strong>Login</strong></button>
+    </div>
+</body>
+
+</html>
